@@ -24,7 +24,7 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/zheref/TheVision'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'zheref' => 'sergio.x.lozano.-nd@disney.com' }
+  s.author           = { 'zheref' => 'me@sergiodaniel.pro' }
   s.source           = { :git => 'https://github.com/zheref/TheVision.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 

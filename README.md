@@ -22,7 +22,7 @@ pod 'TheVision'
 
 ## Author
 
-zheref, sergio.x.lozano.-nd@disney.com
+zheref, contact@sergiodaniel.pro
 
 ## License
 
