@@ -1,0 +1,6 @@
+framework module Pods_TheVision_Tests {
+  umbrella header "Pods-TheVision_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

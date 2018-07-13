@@ -1,0 +1,6 @@
+framework module TheVision {
+  umbrella header "TheVision-umbrella.h"
+
+  export *
+  module * { export * }
+}

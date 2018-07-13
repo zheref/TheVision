@@ -1,0 +1,22 @@
+{
+  "name": "TheVision",
+  "version": "0.1.0",
+  "summary": "A short description of TheVision.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/zheref/TheVision",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "zheref": "sergio.x.lozano.-nd@disney.com"
+  },
+  "source": {
+    "git": "https://github.com/zheref/TheVision.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "TheVision/Classes/**/*"
+}
