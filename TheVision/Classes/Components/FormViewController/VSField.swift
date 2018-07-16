@@ -8,29 +8,29 @@
 
 import Foundation
 
-public struct XVSField {
+public struct VSField {
     // MARK: - Stored properties
     
     public var name: String
     
     var title: String
-    var type: XVSFieldType
-    var size: XVSFieldSize
-    var options: XVSFieldOptions?
+    var type: VSFieldType
+    var size: VSFieldSize
+    var options: VSFieldOptions?
     
     // MARK: - Initializers
     
     public init(name: String,
                 title: String,
-                type: XVSFieldType) {
+                type: VSFieldType) {
         self.init(name: name, title: title, type: type, size: .regular)
     }
     
     public init(name: String,
                 title: String,
-                type: XVSFieldType,
-                size: XVSFieldSize,
-                options: XVSFieldOptions? = nil) {
+                type: VSFieldType,
+                size: VSFieldSize,
+                options: VSFieldOptions? = nil) {
         self.name = name
         self.title = title
         self.type = type

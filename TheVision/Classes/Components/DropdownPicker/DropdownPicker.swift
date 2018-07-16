@@ -9,7 +9,7 @@ import Foundation
 
 import UIKit
 
-open class TVSDropdownPicker: UIView {
+open class VSDropdownPicker: UIView {
     
     fileprivate let DROPDOWN_MENU_CELL_KEY : String = "MenuItemCell"
     
@@ -91,7 +91,7 @@ open class TVSDropdownPicker: UIView {
         }
     }
     
-    open var menuSeparatorStyle: TVSDropdownPickerSeparatorStyle = .singleline {
+    open var menuSeparatorStyle: VSDropdownPickerSeparatorStyle = .singleline {
         didSet {
             switch menuSeparatorStyle {
             case .none:
@@ -112,7 +112,7 @@ open class TVSDropdownPicker: UIView {
     }
     
     /// The text alignment of the menu item
-    open var itemAlignment : TVSDropdownPickerItemAlignment = .left {
+    open var itemAlignment : VSDropdownPickerItemAlignment = .left {
         didSet {
             switch itemAlignment {
             case .right:
@@ -126,7 +126,7 @@ open class TVSDropdownPicker: UIView {
     }
     
     /// The image position, default to .Prefix.  Image will be displayed after item's text if set to .Postfix
-    open var itemImagePosition : TVSDropdownPickerItemImagePosition = .prefix {
+    open var itemImagePosition : VSDropdownPickerItemImagePosition = .prefix {
         didSet {
             switch itemImagePosition {
             case .prefix:
@@ -152,18 +152,18 @@ open class TVSDropdownPicker: UIView {
     }
     
     fileprivate var initialMenuCenter : CGPoint = CGPoint(x: 0, y: 0)
-    fileprivate var itemDataSource : [TVSDropdownPickerItemData] = []
+    fileprivate var itemDataSource : [VSDropdownPickerItemData] = []
     fileprivate var reuseId : String?
-    fileprivate var menuConfig : TVSDropdownPickerConfig?
+    fileprivate var menuConfig : VSDropdownPickerConfig?
     
     // MARK: - Initializer
     public init(titles:[String]) {
         self.isSetUpFinished = false
         self.titles = titles
         for title in titles {
-            itemDataSource.append(TVSDropdownPickerItemData(title: title))
+            itemDataSource.append(VSDropdownPickerItemData(title: title))
         }
-        self.menuConfig = TVSDropdownPickerConfig()
+        self.menuConfig = VSDropdownPickerConfig()
         super.init(frame:UIScreen.main.bounds)
         self.accessibilityIdentifier = "AZDropdownMenu"
         self.backgroundColor = UIColor.clear
@@ -173,10 +173,10 @@ open class TVSDropdownPicker: UIView {
         initMenu()
     }
     
-    public init(dataSource:[TVSDropdownPickerItemData]) {
+    public init(dataSource:[VSDropdownPickerItemData]) {
         self.isSetUpFinished = false
         self.itemDataSource = dataSource
-        self.menuConfig = TVSDropdownPickerConfig()
+        self.menuConfig = VSDropdownPickerConfig()
         super.init(frame:UIScreen.main.bounds)
         self.accessibilityIdentifier = "AZDropdownMenu"
         self.backgroundColor = UIColor.clear
@@ -204,9 +204,9 @@ open class TVSDropdownPicker: UIView {
         overlay.accessibilityIdentifier = "OVERLAY"
         overlay.alpha = 0
         overlay.isUserInteractionEnabled = true
-        let touch : UIGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TVSDropdownPicker.overlayTapped))
+        let touch : UIGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(VSDropdownPicker.overlayTapped))
         overlay.addGestureRecognizer(touch)
-        let panGesture  = UIPanGestureRecognizer(target: self, action: #selector(TVSDropdownPicker.handlePan(gestureRecognizer:)))
+        let panGesture  = UIPanGestureRecognizer(target: self, action: #selector(VSDropdownPicker.handlePan(gestureRecognizer:)))
         panGesture.delegate = self
         overlay.addGestureRecognizer(panGesture)
         addSubview(overlay)
@@ -230,7 +230,7 @@ open class TVSDropdownPicker: UIView {
         menuView.showsHorizontalScrollIndicator = false
         menuView.accessibilityIdentifier = "MENU"
         menuView.separatorColor = menuConfig?.menuSeparatorColor
-//        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(TVSDropdownPicker.handlePan(gestureRecognizer:)))
+//        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(VSDropdownPicker.handlePan(gestureRecognizer:)))
 //        panGesture.delegate = self
 //        menuView.addGestureRecognizer(panGesture)
         addSubview(menuView)
@@ -374,7 +374,7 @@ open class TVSDropdownPicker: UIView {
 
 
 // MARK: - UITableViewDataSource
-extension TVSDropdownPicker: UITableViewDataSource {
+extension VSDropdownPicker: UITableViewDataSource {
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = getCellByData() {
@@ -394,18 +394,18 @@ extension TVSDropdownPicker: UITableViewDataSource {
         return itemDataSource.count
     }
     
-    func getCellByData() -> TVSDropdownPickerBaseCell? {
+    func getCellByData() -> VSDropdownPickerBaseCell? {
         if let _ = itemDataSource.first?.icon {
-            return TVSDropdownPickerDefaultCell(reuseIdentifier: DROPDOWN_MENU_CELL_KEY, config: self.menuConfig!)
+            return VSDropdownPickerDefaultCell(reuseIdentifier: DROPDOWN_MENU_CELL_KEY, config: self.menuConfig!)
         } else {
-            return TVSDropdownPickerBaseCell(style: .default, reuseIdentifier: DROPDOWN_MENU_CELL_KEY)
+            return VSDropdownPickerBaseCell(style: .default, reuseIdentifier: DROPDOWN_MENU_CELL_KEY)
         }
     }
 }
 
 
 // MARK: - UITableViewDelegate
-extension TVSDropdownPicker: UITableViewDelegate {
+extension VSDropdownPicker: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated:true)
@@ -430,7 +430,7 @@ extension TVSDropdownPicker: UITableViewDelegate {
 }
 
 // MARK: - UIGestureRecognizerDelegate
-extension TVSDropdownPicker: UIGestureRecognizerDelegate {
+extension VSDropdownPicker: UIGestureRecognizerDelegate {
     
     @objc public func handlePan(gestureRecognizer: UIPanGestureRecognizer) {
         guard self.shouldDismissMenuOnDrag == true else {
@@ -462,7 +462,7 @@ extension TVSDropdownPicker: UIGestureRecognizerDelegate {
 /**
  *  Menu's model object
  */
-public struct TVSDropdownPickerItemData {
+public struct VSDropdownPickerItemData {
     
     public let title:String
     public let icon:UIImage?

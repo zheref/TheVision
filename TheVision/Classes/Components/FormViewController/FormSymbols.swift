@@ -8,17 +8,17 @@
 
 import Foundation
 
-public enum XVSFieldSize {
+public enum VSFieldSize {
     case regular
     case medium
     case big
 }
 
-public typealias XVSFieldValues = [String: Any?]
+public typealias VSFieldValues = [String: Any?]
 
-public typealias XVSFormOptions = [XVSFormOption: Any]
+public typealias VSFormOptions = [VSFormOption: Any]
 
-public enum XVSFormOption {
+public enum VSFormOption {
     case presentation
     case mode
     case actionCopy
@@ -27,17 +27,17 @@ public enum XVSFormOption {
     case theme
 }
 
-public enum XVSFormPresentation {
+public enum VSFormPresentation {
     case push
     case modal
 }
 
-public enum XVSFormTheme {
+public enum VSFormTheme {
     case light
     case dark
 }
 
-public enum XVSFormMode {
+public enum VSFormMode {
     case new
     case edit
     case editDelete
@@ -45,7 +45,7 @@ public enum XVSFormMode {
     case action
 }
 
-public enum XVSFieldOption {
+public enum VSFieldOption {
     case placeholder
     case keyboardColor
     case hasClearButton
@@ -53,7 +53,7 @@ public enum XVSFieldOption {
     case isEnabled
 }
 
-public typealias XVSFieldOptions = [XVSFieldOption: Any]
+public typealias VSFieldOptions = [VSFieldOption: Any]
 
 protocol FormFieldProtocol {
     

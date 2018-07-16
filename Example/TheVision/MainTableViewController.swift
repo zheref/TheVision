@@ -39,13 +39,13 @@ class MainTableViewController: UITableViewController {
     
     private func showLoginForm() {
         let fields = [
-            XVSField(name: "email", title: "E-mail", type: .email, size: .regular),
-            XVSField(name: "password", title: "Password", type: .password, size: .regular)
+            VSField(name: "email", title: "E-mail", type: .email, size: .regular),
+            VSField(name: "password", title: "Password", type: .password, size: .regular)
         ]
         
-        let vc = XVSFormViewController.instantiate(withName: "login", fields: fields, delegate: self, options: [
-            .mode: XVSFormMode.action,
-            .theme: XVSFormTheme.dark,
+        let vc = VSFormViewController.instantiate(withName: "login", fields: fields, delegate: self, options: [
+            .mode: VSFormMode.action,
+            .theme: VSFormTheme.dark,
             .actionCopy: "Login"
         ])
         
@@ -54,15 +54,15 @@ class MainTableViewController: UITableViewController {
     
     private func showLoginFormModally() {
         let fields = [
-            XVSField(name: "email", title: "E-mail", type: .email, size: .regular),
-            XVSField(name: "password", title: "Password", type: .password, size: .regular),
-            XVSField(name: "action", title: "Custom Action", type: .action, size: .regular),
-            XVSField(name: "forward", title: "Go Forward", type: .action)
+            VSField(name: "email", title: "E-mail", type: .email, size: .regular),
+            VSField(name: "password", title: "Password", type: .password, size: .regular),
+            VSField(name: "action", title: "Custom Action", type: .action, size: .regular),
+            VSField(name: "forward", title: "Go Forward", type: .action)
         ]
         
-        let vc = XVSFormViewController.instantiate(withName: "login", fields: fields, delegate: self, options: [
-            .presentation: XVSFormPresentation.modal,
-            .mode: XVSFormMode.action,
+        let vc = VSFormViewController.instantiate(withName: "login", fields: fields, delegate: self, options: [
+            .presentation: VSFormPresentation.modal,
+            .mode: VSFormMode.action,
             .actionCopy: "Login"
         ])
         
@@ -81,17 +81,17 @@ class MainTableViewController: UITableViewController {
 
 }
 
-extension MainTableViewController : XVSFormViewControllerDelegate {
+extension MainTableViewController : VSFormViewControllerDelegate {
     
-    func formView(_ viewController: XVSFormViewController, didAbortWithValues values: XVSFieldValues) {
+    func formView(_ viewController: VSFormViewController, didAbortWithValues values: VSFieldValues) {
         print(values)
     }
     
-    func formView(_ viewController: XVSFormViewController, didCompleteWithValues values: XVSFieldValues) {
+    func formView(_ viewController: VSFormViewController, didCompleteWithValues values: VSFieldValues) {
         print(values)
     }
     
-    func formView(_ viewController: XVSFormViewController, shouldAllowToCompleteWithValues values: XVSFieldValues) -> Bool {
+    func formView(_ viewController: VSFormViewController, shouldAllowToCompleteWithValues values: VSFieldValues) -> Bool {
         var availability = false
         
         if let email = values["email"] as? String {
@@ -101,20 +101,20 @@ extension MainTableViewController : XVSFormViewControllerDelegate {
         return availability
     }
     
-    func formView(_ viewController: XVSFormViewController, shouldAllowToAbortWithValues values: XVSFieldValues) -> Bool {
+    func formView(_ viewController: VSFormViewController, shouldAllowToAbortWithValues values: VSFieldValues) -> Bool {
         return true
     }
     
-    func formView(_ formViewController: XVSFormViewController, emmitedActionFromField field: XVSField, whileHavingValues values: XVSFieldValues) {
+    func formView(_ formViewController: VSFormViewController, emmitedActionFromField field: VSField, whileHavingValues values: VSFieldValues) {
         if field.name == "action" {
             formViewController.showOkAlert(title: "Worked", message: "Custom actions are working")
         } else if field.name == "forward" {
             let fields = [
-                XVSField(name: "wildcard", title: "Wildcard", type: .text, size: .regular)
+                VSField(name: "wildcard", title: "Wildcard", type: .text, size: .regular)
             ]
             
-            let vc = XVSFormViewController.instantiate(withName: "wildcarding", fields: fields, delegate: self, options: [
-                .mode: XVSFormMode.action,
+            let vc = VSFormViewController.instantiate(withName: "wildcarding", fields: fields, delegate: self, options: [
+                .mode: VSFormMode.action,
                 .actionCopy: "Save"
             ])
             

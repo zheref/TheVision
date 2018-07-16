@@ -16,9 +16,9 @@ class ActionTableViewCell: UITableViewCell {
     
     // MARK: - Stored properties
     
-    var actionClosure: TVSHandler?
+    var actionClosure: VSHandler?
     
-    var theme = XVSFormTheme.light
+    var theme = VSFormTheme.light
     
     // MARK: - Lifecycle
     
@@ -48,7 +48,7 @@ class ActionTableViewCell: UITableViewCell {
         actionButton.backgroundColor = tintColor
     }
     
-    private func handleEnability(forField field: XVSField) {
+    private func handleEnability(forField field: VSField) {
         guard let isEnabled = field.options?[.isEnabled] as? Bool else { return }
         actionButton.isEnabled = isEnabled
         
@@ -65,14 +65,14 @@ class ActionTableViewCell: UITableViewCell {
     
     // MARK: - Operations
     
-    func configAsCTA(forField field: XVSField, withHandler handler: TVSHandler?) {
+    func configAsCTA(forField field: VSField, withHandler handler: VSHandler?) {
         actionClosure = handler
         actionButton.setTitle(field.title, for: .normal)
         handleEnability(forField: field)
         handleTheme()
     }
     
-    func configAsAction(forField field: XVSField, withHandler handler: TVSHandler?) {
+    func configAsAction(forField field: VSField, withHandler handler: VSHandler?) {
         actionClosure = handler
         actionButton.setTitle(field.title, for: .normal)
         actionButton.backgroundColor = UIColor.clear
@@ -81,7 +81,7 @@ class ActionTableViewCell: UITableViewCell {
         handleTheme()
     }
     
-    func configAsDelete(forField field: XVSField, withHandler handler: TVSHandler?) {
+    func configAsDelete(forField field: VSField, withHandler handler: VSHandler?) {
         actionClosure = handler
         actionButton.setTitle(field.title, for: .normal)
         handleEnability(forField: field)

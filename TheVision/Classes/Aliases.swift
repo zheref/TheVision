@@ -8,4 +8,4 @@
 
 import Foundation
 
-public typealias TVSHandler = () -> Void
+public typealias VSHandler = () -> Void

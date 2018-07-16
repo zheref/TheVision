@@ -7,19 +7,19 @@
 
 import Foundation
 
-struct TVSDropdownPickerConfig {
+struct VSDropdownPickerConfig {
     
     var itemColor : UIColor = UIColor.white
     var itemSelectionColor : UIColor = UIColor.lightGray
-    var itemAlignment : TVSDropdownPickerItemAlignment = .left
+    var itemAlignment : VSDropdownPickerItemAlignment = .left
     var itemFontColor : UIColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
     var itemFontSize : CGFloat = 14.0
     var itemFont : String = "Helvetica"
     var overlayAlpha : CGFloat = 0.5
     var overlayColor : UIColor = UIColor.black
-    var menuSeparatorStyle : TVSDropdownPickerSeparatorStyle = .singleline
+    var menuSeparatorStyle : VSDropdownPickerSeparatorStyle = .singleline
     var menuSeparatorColor : UIColor = UIColor.lightGray
-    var itemImagePosition : TVSDropdownPickerItemImagePosition = .prefix
+    var itemImagePosition : VSDropdownPickerItemImagePosition = .prefix
     var shouldDismissMenuOnDrag : Bool = false
 }
 
@@ -29,7 +29,7 @@ struct TVSDropdownPickerConfig {
  - Singleline: A solid single line
  - None:       No Separator
  */
-public enum TVSDropdownPickerSeparatorStyle {
+public enum VSDropdownPickerSeparatorStyle {
     case singleline, none
 }
 
@@ -39,6 +39,6 @@ public enum TVSDropdownPickerSeparatorStyle {
  - Prefix:  Place icon before item title
  - Postfix: Place icon after item title
  */
-public enum TVSDropdownPickerItemImagePosition {
+public enum VSDropdownPickerItemImagePosition {
     case prefix, postfix
 }

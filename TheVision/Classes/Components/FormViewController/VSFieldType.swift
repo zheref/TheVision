@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum XVSFieldType {
+public enum VSFieldType {
     
     // Text
     case name

@@ -8,19 +8,19 @@
 
 import UIKit
 
-public protocol XVSFormViewControllerDelegate : class {
+public protocol VSFormViewControllerDelegate : class {
     
-    func formView(_ viewController: XVSFormViewController, didAbortWithValues values: XVSFieldValues)
-    func formView(_ viewController: XVSFormViewController, didCompleteWithValues values: XVSFieldValues)
+    func formView(_ viewController: VSFormViewController, didAbortWithValues values: VSFieldValues)
+    func formView(_ viewController: VSFormViewController, didCompleteWithValues values: VSFieldValues)
     
-    func formView(_ viewController: XVSFormViewController, shouldAllowToCompleteWithValues values: XVSFieldValues) -> Bool
-    func formView(_ viewController: XVSFormViewController, shouldAllowToAbortWithValues values: XVSFieldValues) -> Bool
+    func formView(_ viewController: VSFormViewController, shouldAllowToCompleteWithValues values: VSFieldValues) -> Bool
+    func formView(_ viewController: VSFormViewController, shouldAllowToAbortWithValues values: VSFieldValues) -> Bool
     
-    func formView(_ viewController: XVSFormViewController, emmitedActionFromField field: XVSField, whileHavingValues values: XVSFieldValues)
+    func formView(_ viewController: VSFormViewController, emmitedActionFromField field: VSField, whileHavingValues values: VSFieldValues)
     
 }
 
-public class XVSFormViewController: UITableViewController {
+public class VSFormViewController: UITableViewController {
     
     // MARK: - Nested types
     
@@ -34,17 +34,17 @@ public class XVSFormViewController: UITableViewController {
     
     public var name = String()
     
-    private var sections = [XVSSection]()
+    private var sections = [VSSection]()
     
-    private weak var delegate: XVSFormViewControllerDelegate?
+    private weak var delegate: VSFormViewControllerDelegate?
     
-    private var options: XVSFormOptions? {
+    private var options: VSFormOptions? {
         didSet {
             if delegate == nil {
                 print("Warning: Delegate has not been set before setting options. This could result in unexpected behaviors.")
             }
             
-            if let mode = options?[.mode] as? XVSFormMode,
+            if let mode = options?[.mode] as? VSFormMode,
                 mode == .action {
                 
                 let actionCopy = options?[.actionCopy] as? String ?? "Done"
@@ -55,11 +55,11 @@ public class XVSFormViewController: UITableViewController {
                     shouldActionBeInitiallyEnabled = delegate.formView(self, shouldAllowToCompleteWithValues: currentValues)
                 }
                 
-                let actionField = XVSField(name: Constants.ctaActionName, title: actionCopy, type: .cta, size: .medium, options: [
+                let actionField = VSField(name: Constants.ctaActionName, title: actionCopy, type: .cta, size: .medium, options: [
                     .isEnabled: shouldActionBeInitiallyEnabled
                 ])
                 
-                let actionSection = XVSSection(title: "", fields: [actionField], collapsable: false)
+                let actionSection = VSSection(title: "", fields: [actionField], collapsable: false)
                 sections.append(actionSection)
                 
                 //print(sections)
@@ -69,15 +69,15 @@ public class XVSFormViewController: UITableViewController {
     
     // MARK: - Computed properties
     
-    private var mode: XVSFormMode {
-        return options?[.mode] as? XVSFormMode ?? .action
+    private var mode: VSFormMode {
+        return options?[.mode] as? VSFormMode ?? .action
     }
     
-    private var theme: XVSFormTheme {
-        return options?[.theme] as? XVSFormTheme ?? .light
+    private var theme: VSFormTheme {
+        return options?[.theme] as? VSFormTheme ?? .light
     }
     
-    private var ctaField: XVSField? {
+    private var ctaField: VSField? {
         let lastSection = sections.last
         let lastField = lastSection?.fields.last
         
@@ -89,7 +89,7 @@ public class XVSFormViewController: UITableViewController {
         }
     }
     
-    private var currentValues: XVSFieldValues {
+    private var currentValues: VSFieldValues {
         var values = [String: Any?]()
         
         var sectionIterator = 0
@@ -116,12 +116,12 @@ public class XVSFormViewController: UITableViewController {
     // MARK: - Initializers
     
     public static func instantiate(withName name: String,
-                                   fields: [XVSField],
-                                   delegate: XVSFormViewControllerDelegate? = nil,
-                                   options: XVSFormOptions? = nil) -> UIViewController {
+                                   fields: [VSField],
+                                   delegate: VSFormViewControllerDelegate? = nil,
+                                   options: VSFormOptions? = nil) -> UIViewController {
         
         let sections = [
-            XVSSection(title: String(), fields: fields, collapsable: false)
+            VSSection(title: String(), fields: fields, collapsable: false)
         ]
         
         return instantiate(withName: name,
@@ -131,15 +131,15 @@ public class XVSFormViewController: UITableViewController {
     }
     
     public static func instantiate(withName name: String,
-                                   sections: [XVSSection],
-                                   delegate: XVSFormViewControllerDelegate?,
-                                   options: XVSFormOptions? = nil) -> UIViewController {
+                                   sections: [VSSection],
+                                   delegate: VSFormViewControllerDelegate?,
+                                   options: VSFormOptions? = nil) -> UIViewController {
         
-        let presentation = options?[.presentation] as? XVSFormPresentation
+        let presentation = options?[.presentation] as? VSFormPresentation
         
         let storyboard = UIStoryboard(name: K.Storyboard.FormViewController,
-                                    bundle: Bundle(for: XVSFormViewController.self))
-        let vc = storyboard.instantiateInitialViewController() as! XVSFormViewController
+                                    bundle: Bundle(for: VSFormViewController.self))
+        let vc = storyboard.instantiateInitialViewController() as! VSFormViewController
         
         vc.name = name
         vc.sections = sections
@@ -397,7 +397,7 @@ public class XVSFormViewController: UITableViewController {
     // MARK: - Actions
     
     @objc func userDidTapToAbort(sender: UIBarButtonItem) {
-        if let presentation = options?[.presentation] as? XVSFormPresentation,
+        if let presentation = options?[.presentation] as? VSFormPresentation,
             presentation == .modal {
             dismiss(animated: true) { [unowned self] in
                 self.delegate?.formView(self, didAbortWithValues: self.currentValues)
@@ -408,7 +408,7 @@ public class XVSFormViewController: UITableViewController {
     }
     
     @objc func userDidTapToConfirm(sender: Any) {
-        if let presentation = options?[.presentation] as? XVSFormPresentation,
+        if let presentation = options?[.presentation] as? VSFormPresentation,
             presentation == .modal {
             dismiss(animated: true) { [unowned self] in
                 self.delegate?.formView(self, didCompleteWithValues: self.currentValues)
@@ -421,9 +421,9 @@ public class XVSFormViewController: UITableViewController {
 
 }
 
-extension XVSFormViewController : FieldCellDelegate {
+extension VSFormViewController : FieldCellDelegate {
     
-    func cell(forField field: XVSField, changedToValue value: Any?) {
+    func cell(forField field: VSField, changedToValue value: Any?) {
         updateCompletionAvailability()
     }
     

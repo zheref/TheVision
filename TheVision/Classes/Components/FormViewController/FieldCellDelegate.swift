@@ -10,6 +10,6 @@ import Foundation
 
 protocol FieldCellDelegate : class {
     
-    func cell(forField field: XVSField, changedToValue value: Any?)
+    func cell(forField field: VSField, changedToValue value: Any?)
     
 }

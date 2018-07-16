@@ -16,9 +16,9 @@ class TextTableViewCell: UITableViewCell {
     
     // MARK: - Stored properties
     
-    var field: XVSField?
+    var field: VSField?
     
-    var theme = XVSFormTheme.light
+    var theme = VSFormTheme.light
     
     weak var delegate: FieldCellDelegate?
 
@@ -43,7 +43,7 @@ class TextTableViewCell: UITableViewCell {
     
     // MARK: Operations
     
-    func configAsName(forField field: XVSField) {
+    func configAsName(forField field: VSField) {
         textField.autocapitalizationType = .words
         
         configChangeTracking()
@@ -55,7 +55,7 @@ class TextTableViewCell: UITableViewCell {
         self.field = field
     }
     
-    func configAsEmail(forField field: XVSField) {
+    func configAsEmail(forField field: VSField) {
         textField.keyboardType = .emailAddress
         
         configChangeTracking()
@@ -67,7 +67,7 @@ class TextTableViewCell: UITableViewCell {
         self.field = field
     }
     
-    func configAsPassword(forField field: XVSField) {
+    func configAsPassword(forField field: VSField) {
         textField.isSecureTextEntry = true
         
         configChangeTracking()
@@ -79,7 +79,7 @@ class TextTableViewCell: UITableViewCell {
         self.field = field
     }
     
-    func configAsText(forField field: XVSField) {
+    func configAsText(forField field: VSField) {
         configChangeTracking()
         handleClearButtonMode(fromOptions: field.options)
         handlePlaceholder(forField: field)
@@ -89,7 +89,7 @@ class TextTableViewCell: UITableViewCell {
         self.field = field
     }
     
-    func configAsPhoneNumber(forField field: XVSField) {
+    func configAsPhoneNumber(forField field: VSField) {
         textField.keyboardType = .namePhonePad
         
         configChangeTracking()
@@ -107,7 +107,7 @@ class TextTableViewCell: UITableViewCell {
         textField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
     }
     
-    private func handleClearButtonMode(fromOptions options: XVSFieldOptions?) {
+    private func handleClearButtonMode(fromOptions options: VSFieldOptions?) {
         if let hasClearButton = options?[.hasClearButton] as? Bool {
             textField.clearButtonMode = hasClearButton ? .whileEditing : .never
         } else {
@@ -115,7 +115,7 @@ class TextTableViewCell: UITableViewCell {
         }
     }
     
-    private func handlePlaceholder(forField field: XVSField) {
+    private func handlePlaceholder(forField field: VSField) {
         if let placeholder = field.options?[.placeholder] as? String {
             if theme == .dark {
                 textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [

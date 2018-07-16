@@ -8,7 +8,7 @@
 import UIKit
 import Foundation
 
-public final class TVSDropdownPickerDefaultCell: TVSDropdownPickerBaseCell {
+public final class VSDropdownPickerDefaultCell: VSDropdownPickerBaseCell {
     
     /// Container that encloses everything
     fileprivate let container = UIView()
@@ -18,9 +18,9 @@ public final class TVSDropdownPickerDefaultCell: TVSDropdownPickerBaseCell {
     fileprivate let iconView = UIImageView ()
     fileprivate let titleLabel = UILabel()
     fileprivate var isSetupFinished = false
-    fileprivate var config : TVSDropdownPickerConfig
+    fileprivate var config : VSDropdownPickerConfig
     
-    init(reuseIdentifier: String?, config: TVSDropdownPickerConfig) {
+    init(reuseIdentifier: String?, config: VSDropdownPickerConfig) {
         self.config = config
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
@@ -38,7 +38,7 @@ public final class TVSDropdownPickerDefaultCell: TVSDropdownPickerBaseCell {
         setupForDefaultLayout()
     }
     
-    init(style: UITableViewCellStyle, reuseIdentifier: String?, config: TVSDropdownPickerConfig) {
+    init(style: UITableViewCellStyle, reuseIdentifier: String?, config: VSDropdownPickerConfig) {
         self.config = config
         super.init(style:.default, reuseIdentifier: reuseIdentifier)
     }
@@ -127,14 +127,14 @@ public final class TVSDropdownPickerDefaultCell: TVSDropdownPickerBaseCell {
         }
     }
     
-    public override func configureData(_ item: TVSDropdownPickerItemData) {
+    public override func configureData(_ item: VSDropdownPickerItemData) {
         self.titleLabel.text = item.title
         if let icon = item.icon {
             self.iconView.image = icon
         }
     }
     
-    override func configureStyle(_ config: TVSDropdownPickerConfig) {
+    override func configureStyle(_ config: VSDropdownPickerConfig) {
         self.selectionStyle = .none
         self.backgroundColor = config.itemColor
         self.titleLabel.textColor = config.itemFontColor

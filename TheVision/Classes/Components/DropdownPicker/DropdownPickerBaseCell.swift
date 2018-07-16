@@ -7,13 +7,13 @@
 
 import Foundation
 
-open class TVSDropdownPickerBaseCell : UITableViewCell, TVSDropdownPickerCellProtocol {
+open class VSDropdownPickerBaseCell : UITableViewCell, VSDropdownPickerCellProtocol {
     
-    open func configureData(_ data: TVSDropdownPickerItemData) {
+    open func configureData(_ data: VSDropdownPickerItemData) {
         self.textLabel?.text = data.title
     }
     
-    func configureStyle(_ config: TVSDropdownPickerConfig) {
+    func configureStyle(_ config: VSDropdownPickerConfig) {
         self.selectionStyle = .none
         self.backgroundColor = config.itemColor
         self.textLabel?.textColor = config.itemFontColor
@@ -30,11 +30,11 @@ open class TVSDropdownPickerBaseCell : UITableViewCell, TVSDropdownPickerCellPro
     }
 }
 
-protocol TVSDropdownPickerCellProtocol {
-    func configureData(_ data: TVSDropdownPickerItemData)
-    func configureStyle(_ configuration: TVSDropdownPickerConfig)
+protocol VSDropdownPickerCellProtocol {
+    func configureData(_ data: VSDropdownPickerItemData)
+    func configureStyle(_ configuration: VSDropdownPickerConfig)
 }
 
-public enum TVSDropdownPickerItemAlignment {
+public enum VSDropdownPickerItemAlignment {
     case left, right, center
 }

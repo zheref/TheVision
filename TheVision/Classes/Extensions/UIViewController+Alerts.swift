@@ -31,7 +31,7 @@ struct VisionRetryConstants {
     static let defaultAbortCopy = "Abort"
     static let defaultStyle = UIAlertControllerStyle.alert
     static let defaultAnimated = true
-    static let defaultPresentationCompletion: TVSHandler? = nil
+    static let defaultPresentationCompletion: VSHandler? = nil
     static let okCopy = "Ok"
 }
 
@@ -43,8 +43,8 @@ public extension UIViewController {
     
     func showRetryAlert(withTitle title: String,
                         message: String,
-                        retryHandler retry: @escaping TVSHandler,
-                        cancelHandler cancel: TVSHandler? = nil,
+                        retryHandler retry: @escaping VSHandler,
+                        cancelHandler cancel: VSHandler? = nil,
                         options: VisionRetryOptions? = nil) {
         
         // Alert
@@ -79,7 +79,7 @@ public extension UIViewController {
         // Presentation
         
         let animated = options?[.animated] as? Bool ?? VisionRetryConstants.defaultAnimated
-        let completion = options?[.presentationCompletion] as? TVSHandler ??
+        let completion = options?[.presentationCompletion] as? VSHandler ??
             VisionRetryConstants.defaultPresentationCompletion
         
         present(alert, animated: animated, completion: completion)
@@ -87,8 +87,8 @@ public extension UIViewController {
     
     func showWarningAlert(withTitle title: String,
                         message: String,
-                        proceedHandler proceed: @escaping TVSHandler,
-                        abortHandler abort: @escaping TVSHandler,
+                        proceedHandler proceed: @escaping VSHandler,
+                        abortHandler abort: @escaping VSHandler,
                         options: VisionRetryOptions? = nil) {
         
         // Alert
@@ -121,13 +121,13 @@ public extension UIViewController {
         // Presentation
         
         let animated = options?[.animated] as? Bool ?? VisionRetryConstants.defaultAnimated
-        let completion = options?[.presentationCompletion] as? TVSHandler ??
+        let completion = options?[.presentationCompletion] as? VSHandler ??
             VisionRetryConstants.defaultPresentationCompletion
         
         present(alert, animated: animated, completion: completion)
     }
     
-    func showOkAlert(title: String, message: String, handler ok: TVSHandler? = nil) {
+    func showOkAlert(title: String, message: String, handler ok: VSHandler? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         // Ok action
