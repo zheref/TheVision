@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## TheVision
 
-Copyright (c) 2018 zheref <sergio.x.lozano.-nd@disney.com>
+Copyright (c) 2018 zheref <me@sergiodaniel.pro>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
