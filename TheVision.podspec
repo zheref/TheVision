@@ -30,11 +30,13 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'TheVision/Classes/**/*'
+  s.source_files = 'TheVision/Classes/**/*.{swift}'
   
-  # s.resource_bundles = {
-  #   'TheVision' => ['TheVision/Assets/*.png']
-  # }
+  s.resource_bundles = {
+    'TheVision' => ['TheVision/Classes/**/*.{storyboard,xib,xcassets,json,imageset,png}']
+  }
+  
+  s.resources = ['TheVision/Classes/**/*.{storyboard}']
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

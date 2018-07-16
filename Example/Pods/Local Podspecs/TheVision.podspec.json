@@ -18,5 +18,13 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "TheVision/Classes/**/*"
+  "source_files": "TheVision/Classes/**/*.{swift}",
+  "resource_bundles": {
+    "TheVision": [
+      "TheVision/Classes/**/*.{storyboard,xib,xcassets,json,imageset,png}"
+    ]
+  },
+  "resources": [
+    "TheVision/Classes/**/*.{storyboard}"
+  ]
 }
