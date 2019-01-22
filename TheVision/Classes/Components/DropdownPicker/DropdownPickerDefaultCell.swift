@@ -38,7 +38,7 @@ public final class VSDropdownPickerDefaultCell: VSDropdownPickerBaseCell {
         setupForDefaultLayout()
     }
     
-    init(style: UITableViewCellStyle, reuseIdentifier: String?, config: VSDropdownPickerConfig) {
+    init(style: UITableViewCell.CellStyle, reuseIdentifier: String?, config: VSDropdownPickerConfig) {
         self.config = config
         super.init(style:.default, reuseIdentifier: reuseIdentifier)
     }
@@ -55,9 +55,9 @@ public final class VSDropdownPickerDefaultCell: VSDropdownPickerBaseCell {
     fileprivate func constraintsForLeftAlignment(_ viewBindings: [String:AnyObject]) -> [NSLayoutConstraint] {
         switch config.itemImagePosition {
         case .prefix:
-            return NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[icon]-10-[title]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+            return NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[icon]-10-[title]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
         case .postfix:
-            return NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[title]-10-[icon]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+            return NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[title]-10-[icon]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
         }
         
     }
@@ -65,9 +65,9 @@ public final class VSDropdownPickerDefaultCell: VSDropdownPickerBaseCell {
     fileprivate func constraintsForRightAlignment(_ viewBindings: [String:AnyObject]) -> [NSLayoutConstraint] {
         switch config.itemImagePosition {
         case .prefix:
-            return NSLayoutConstraint.constraints(withVisualFormat: "H:[title]-10-[icon]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+            return NSLayoutConstraint.constraints(withVisualFormat: "H:[title]-10-[icon]-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
         case .postfix:
-            return NSLayoutConstraint.constraints(withVisualFormat: "H:[title]-10-[icon]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+            return NSLayoutConstraint.constraints(withVisualFormat: "H:[title]-10-[icon]-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
         }
         
         
@@ -77,9 +77,9 @@ public final class VSDropdownPickerDefaultCell: VSDropdownPickerBaseCell {
         var constraints:[NSLayoutConstraint]
         switch config.itemImagePosition {
         case .prefix:
-            constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[icon]-10-[title]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+            constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[icon]-10-[title]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
         case .postfix:
-            constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[title]-10-[icon]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
+            constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[title]-10-[icon]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewBindings)
         }
         
         
@@ -108,12 +108,12 @@ public final class VSDropdownPickerDefaultCell: VSDropdownPickerBaseCell {
             let iconCenterY = NSLayoutConstraint(item: iconView, attribute: .centerY, relatedBy: .equal, toItem: innerContainer, attribute: .centerY, multiplier: 1, constant: 0)
             let titleCenterY = NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: innerContainer, attribute: .centerY, multiplier: 1, constant: 0)
             
-            let innerContainerHAlignment = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[inner]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings)
-            let innerContainerVAlignment = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[inner]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings)
+            let innerContainerHAlignment = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[inner]-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: bindings)
+            let innerContainerVAlignment = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[inner]-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: bindings)
             
             /// Constraints for outermost container, should always stretch to superview
-            let width = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[container]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings)
-            let height = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[container]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings)
+            let width = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[container]-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: bindings)
+            let height = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[container]-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: bindings)
             
             innerContainer.addConstraints(constraintsForAlignment)
             innerContainer.addConstraint(iconCenterY)

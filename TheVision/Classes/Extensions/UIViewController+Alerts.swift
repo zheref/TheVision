@@ -29,7 +29,7 @@ struct VisionRetryConstants {
     static let defaultProceedCopy = "Proceed"
     static let defaultCancelCopy = "Cancel"
     static let defaultAbortCopy = "Abort"
-    static let defaultStyle = UIAlertControllerStyle.alert
+    static let defaultStyle = UIAlertController.Style.alert
     static let defaultAnimated = true
     static let defaultPresentationCompletion: VSHandler? = nil
     static let okCopy = "Ok"
@@ -49,7 +49,7 @@ public extension UIViewController {
         
         // Alert
         
-        let popupStyle = options?[.style] as? UIAlertControllerStyle ??
+        let popupStyle = options?[.style] as? UIAlertController.Style ??
             VisionRetryConstants.defaultStyle
         let alert = UIAlertController(title: title,
                                       message: message,
@@ -93,7 +93,7 @@ public extension UIViewController {
         
         // Alert
         
-        let popupStyle = options?[.style] as? UIAlertControllerStyle ??
+        let popupStyle = options?[.style] as? UIAlertController.Style ??
             VisionRetryConstants.defaultStyle
         let alert = UIAlertController(title: title,
                                       message: message,

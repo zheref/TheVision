@@ -25,7 +25,7 @@ class DarkTouchTweaker {
         viewController.view.backgroundColor = Color.backgroundColor
         
         viewController.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.foregroundColor: UIColor.white
+            NSAttributedString.Key.foregroundColor: UIColor.white
         ]
         
         viewController.navigationController?.navigationBar.tintColor = UIColor.white
