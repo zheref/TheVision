@@ -20,7 +20,7 @@ public struct VSFloatingActionInfo {
         static let frame = CGRect(x: 22.0, y: 53.0, width: 50.0, height: 50.0)
     }
     
-    var frame: CGRect = Defaults.frame
+    public var frame: CGRect = Defaults.frame
     var iconImage: UIImage?
     var position: VSFloatingActionPosition = .topLeft
     
