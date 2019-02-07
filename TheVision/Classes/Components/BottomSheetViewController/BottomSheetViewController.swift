@@ -37,7 +37,10 @@ open class BottomSheetViewController: UIViewController {
     
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        animateToReflectSize()
+    }
+    
+    open func animateToReflectSize() {
         UIView.animate(withDuration: 0.3) { [weak self] in
             guard let self = self else {
                 return
