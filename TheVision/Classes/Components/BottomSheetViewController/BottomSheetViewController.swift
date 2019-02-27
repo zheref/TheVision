@@ -13,6 +13,10 @@ open class BottomSheetViewController: UIViewController {
         return 135.0
     }
     
+    open var finalHeight: CGFloat? {
+        return nil
+    }
+    
     open var effectStyle: UIBlurEffect.Style? {
         return nil
     }
@@ -48,7 +52,9 @@ open class BottomSheetViewController: UIViewController {
             
             let frame = self.view.frame
             let yComponent = UIScreen.main.bounds.height - self.initialHeight
-            self.view.frame = CGRect(x: 0, y: yComponent, width: frame.width, height: frame.height)
+            
+            let height = self.finalHeight ?? frame.height
+            self.view.frame = CGRect(x: 0, y: yComponent, width: frame.width, height: height)
         }
     }
     
@@ -73,8 +79,16 @@ open class BottomSheetViewController: UIViewController {
     @objc private func panGesture(recognizer: UIPanGestureRecognizer) {
         let translation = recognizer.translation(in: view)
         let y = view.frame.minY
-        view.frame = CGRect(x: 0, y: y + translation.y, width: view.frame.width, height: view.frame.height)
-        recognizer.setTranslation(CGPoint.zero, in: view)
+        
+        let minimumY = UIScreen.main.bounds.height - (finalHeight ?? view.frame.height)
+        let maximumY = UIScreen.main.bounds.height - initialHeight
+        
+        let newY = y + translation.y
+        
+        if newY >= minimumY, newY <= maximumY {
+            view.frame = CGRect(x: 0, y: newY, width: view.frame.width, height: view.frame.height)
+            recognizer.setTranslation(CGPoint.zero, in: view)
+        }
     }
 
 }
