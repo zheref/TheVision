@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nJY-7e-eg9">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Dotted Pager Controller-->
+        <scene sceneID="JU1-Ot-YNz">
+            <objects>
+                <viewController id="nJY-7e-eg9" customClass="DottedPagerController" customModule="TheVision" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rRr-5k-9WX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3jG-mN-QL5">
+                                <rect key="frame" x="0.0" y="83" width="375" height="584"/>
+                                <connections>
+                                    <segue destination="YOX-Ol-1wM" kind="embed" identifier="dottedPagerSubpager" id="Ntr-Tu-4H7"/>
+                                </connections>
+                            </containerView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="m1x-sm-bfU">
+                                <rect key="frame" x="168" y="29" width="39" height="37"/>
+                                <color key="pageIndicatorTintColor" red="0.76862745098039209" green="0.8666666666666667" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="currentPageIndicatorTintColor" red="0.19607843137254902" green="0.55686274509803924" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3jG-mN-QL5" firstAttribute="leading" secondItem="MHv-c3-Iw8" secondAttribute="leading" id="JI2-op-N96"/>
+                            <constraint firstItem="3jG-mN-QL5" firstAttribute="top" secondItem="MHv-c3-Iw8" secondAttribute="top" constant="63" id="N9A-T7-YVg"/>
+                            <constraint firstItem="m1x-sm-bfU" firstAttribute="centerX" secondItem="MHv-c3-Iw8" secondAttribute="centerX" id="NVG-jL-9jt"/>
+                            <constraint firstItem="MHv-c3-Iw8" firstAttribute="bottom" secondItem="3jG-mN-QL5" secondAttribute="bottom" id="f8o-bo-qWu"/>
+                            <constraint firstItem="3jG-mN-QL5" firstAttribute="width" secondItem="rRr-5k-9WX" secondAttribute="width" id="fjg-HX-4fK"/>
+                            <constraint firstItem="m1x-sm-bfU" firstAttribute="top" secondItem="MHv-c3-Iw8" secondAttribute="top" constant="9" id="kRf-3e-QaC"/>
+                            <constraint firstItem="MHv-c3-Iw8" firstAttribute="trailing" secondItem="3jG-mN-QL5" secondAttribute="trailing" id="tz8-jQ-KUk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MHv-c3-Iw8"/>
+                    </view>
+                    <connections>
+                        <outlet property="dotsPageControl" destination="m1x-sm-bfU" id="R75-Ez-dyx"/>
+                        <outlet property="subpagerView" destination="3jG-mN-QL5" id="N84-PY-oJh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5wK-VN-srn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-60" y="-201.04947526236884"/>
+        </scene>
+        <!--Pager View Controller-->
+        <scene sceneID="6iH-Vi-V5B">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="min" id="YOX-Ol-1wM" customClass="PagerViewController" customModule="TheVision" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jgr-D0-7lK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="PzZ-fg-WRg"/>
+                    </view>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ldv-n7-IJZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="806" y="-546"/>
+        </scene>
+    </scenes>
+</document>
