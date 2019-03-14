@@ -64,6 +64,13 @@ public class DottedPagerController: UIViewController {
         }
     }
     
+    // MARK: - PUBLIC OPERATIONS
+    
+    public func goNext() {
+        subpager?.moveToNextPage()
+        updateDots()
+    }
+    
     // MARK: - PRIVATE OPERATIONS
     
     private func setupSubpager() {
@@ -88,18 +95,22 @@ public class DottedPagerController: UIViewController {
     private func setupConstraints() {
         
     }
+    
+    private func updateDots() {
+        guard let delegate = delegate, let pageViewController = subpager else {
+            return
+        }
+        
+        let pageContentViewController = pageViewController.viewControllers![0]
+        currentPageIndex = delegate.pages.index(of: pageContentViewController) ?? 0
+    }
 
 }
 
 extension DottedPagerController : UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        guard let delegate = delegate else {
-            return
-        }
-        
-        let pageContentViewController = pageViewController.viewControllers![0]
-        currentPageIndex = delegate.pages.index(of: pageContentViewController) ?? 0
+        updateDots()
     }
     
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {

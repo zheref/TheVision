@@ -29,6 +29,12 @@ class PagerViewController: UIPageViewController {
         return .scroll
     }
     
+    public func moveToNextPage() {
+        guard let currentViewController = self.viewControllers?.first else { return print("Failed to get current view controller") }
+        guard let nextViewController = self.dataSource?.pageViewController(self, viewControllerAfter: currentViewController) else { return }
+        setViewControllers([nextViewController], direction: .forward, animated: true, completion: nil)
+    }
+    
 
     /*
     // MARK: - Navigation
