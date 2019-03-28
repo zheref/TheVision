@@ -9,6 +9,12 @@ import UIKit
 
 open class BottomSheetViewController: UIViewController {
     
+    private var initialTouchPoint = CGPoint(x: 0, y: 0)
+    
+    open var accelerationDistance: CGFloat {
+        return 120.0
+    }
+    
     open var initialHeight: CGFloat {
         return 135.0
     }
@@ -25,12 +31,21 @@ open class BottomSheetViewController: UIViewController {
         return true
     }
     
+    open var accelerated: Bool {
+        return false
+    }
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
         
         if draggable {
-            let gesture = UIPanGestureRecognizer(target: self, action: #selector(BottomSheetViewController.panGesture))
-            view.addGestureRecognizer(gesture)
+            if accelerated {
+                let gesture = UIPanGestureRecognizer(target: self, action: #selector(BottomSheetViewController.acceleratedGesture(_:)))
+                view.addGestureRecognizer(gesture)
+            } else {
+                let gesture = UIPanGestureRecognizer(target: self, action: #selector(BottomSheetViewController.panGesture))
+                view.addGestureRecognizer(gesture)
+            }
         }
     }
     
@@ -88,6 +103,45 @@ open class BottomSheetViewController: UIViewController {
         if newY >= minimumY, newY <= maximumY {
             view.frame = CGRect(x: 0, y: newY, width: view.frame.width, height: view.frame.height)
             recognizer.setTranslation(CGPoint.zero, in: view)
+        }
+    }
+    
+    @objc func acceleratedGesture(_ sender: UIPanGestureRecognizer) {
+        let touchPoint = sender.location(in: self.view?.window)
+        
+        if sender.state == .began {
+            initialTouchPoint = touchPoint
+        } else if sender.state == .changed {
+            let translation = sender.translation(in: view)
+            let y = view.frame.minY
+            
+            let minimumY = UIScreen.main.bounds.height - (finalHeight ?? view.frame.height)
+            let maximumY = UIScreen.main.bounds.height - initialHeight
+            
+            let newY = y + translation.y
+            
+            if newY >= minimumY, newY <= maximumY {
+                view.frame = CGRect(x: 0, y: newY, width: view.frame.width, height: finalHeight ?? initialHeight)
+                sender.setTranslation(CGPoint.zero, in: view)
+            }
+        } else if sender.state == .ended || sender.state == .cancelled {
+            let yTranslation = touchPoint.y - initialTouchPoint.y
+            
+            if yTranslation.magnitude > accelerationDistance {
+                if yTranslation < 0 {
+                    // Go complete
+                    UIView.animate(withDuration: 0.3) { [unowned self] in
+                        let yComponent = UIScreen.main.bounds.height - (self.finalHeight ?? self.initialHeight)
+                        self.view.frame = CGRect(x: 0, y: yComponent, width: self.view.frame.size.width, height: self.finalHeight ?? self.initialHeight)
+                    }
+                } else {
+                    // Collapse
+                    UIView.animate(withDuration: 0.3) { [unowned self] in
+                        let yComponent = UIScreen.main.bounds.height - self.initialHeight
+                        self.view.frame = CGRect(x: 0, y: yComponent, width: self.view.frame.size.width, height: self.finalHeight ?? self.initialHeight)
+                    }
+                }
+            }
         }
     }
 
