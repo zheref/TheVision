@@ -73,6 +73,17 @@ open class BottomSheetViewController: UIViewController {
         }
     }
     
+    open func animateToDismiss(_ completion: @escaping () -> Void) {
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            self?.view.frame.origin.y = UIScreen.main.bounds.height
+        }) { [weak self] (b) in
+            self?.beginAppearanceTransition(false, animated: true)
+            self?.view.removeFromSuperview()
+            self?.endAppearanceTransition()
+            completion()
+        }
+    }
+    
     func prepareBackgroundView() {
         guard let style = effectStyle else {
             return
